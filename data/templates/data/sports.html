@@ -4,20 +4,17 @@
 {% block content %}
 <style>
     .form-container {
-        margin-top: 30px; /* space below navbar */
+        margin-top: 80px; /* space below navbar */
         padding: 40px;
         max-width: 100%;
     }
 
     .form-card {
-        width: 80%; /* Reduced the width from 100% to 80% */
-        max-width: 600px; /* Maximum width of the form */
+        width: 100%;
         padding: 30px 50px;
         background-color: #ffffff;
         border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 255, 0.2);
-
-        margin: 0 auto; /* Center the form horizontally */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
     .form-title {
@@ -46,15 +43,11 @@
         font-size: 18px;
         border-radius: 8px;
     }
-
-    .text-danger {
-        font-size: 0.875rem;
-    }
 </style>
 
 <div class="container-fluid form-container">
     <div class="form-card">
-        <h1 class="form-title">Sports Event Form</h1>
+        <h1 class="form-title">Student Form</h1>
 
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
