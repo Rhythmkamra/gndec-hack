@@ -1,25 +1,71 @@
-<!-- home.html -->
-
 {% extends 'data/base.html' %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h1 class="text-center mb-4">Student Form</h1>
-                    
-                    <!-- Add enctype attribute for file uploads -->
-                    <form method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit" class="btn btn-primary btn-block mt-4">Submit</button>
-                    </form>
+<style>
+    .form-container {
+        margin-top: 30px; /* space below navbar */
+        padding: 40px;
+        max-width: 100%;
+    }
 
-                </div>
+    .form-card {
+        width: 80%; /* Reduced width to 80% */
+        max-width: 600px; /* Maximum width */
+        padding: 30px 50px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 255, 0.2);
+
+        margin: 0 auto; /* Center the form horizontally */
+    }
+
+    .form-title {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    form .form-group {
+        margin-bottom: 20px;
+    }
+
+    form .form-control {
+        border-radius: 8px;
+        height: 45px;
+    }
+
+    textarea.form-control {
+        height: 100px;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 18px;
+        border-radius: 8px;
+    }
+
+    .card-body {
+        padding: 40px;
+    }
+</style>
+
+<div class="container form-container">
+    <div class="form-card">
+        <h1 class="form-title">Technical Event Form</h1>
+
+        <!-- Form starts here -->
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary submit-btn mt-4">Submit</button>
             </div>
-        </div>
+        </form>
+        <!-- Form ends here -->
+
     </div>
 </div>
 {% endblock %}

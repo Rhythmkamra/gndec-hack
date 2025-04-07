@@ -1,10 +1,14 @@
 from django.contrib import admin
 from django.urls import path
 from data import views as data_views  # Assuming your app is named 'data'
-
+from django.contrib.auth import views as auth_views
+from django.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
-
+path('academics/',include('academics.urls')), #editbyJashan
+path('accounts/', include('django.contrib.auth.urls')),  # ✅ Adds login/logout support
+    path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
     # Default route (root URL)
     path('', data_views.register_view, name='home'),
 

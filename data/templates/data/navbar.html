@@ -1,29 +1,38 @@
-<!-- navbar.html -->
 {% load static %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #1dcece;"> <!-- Blue background -->
     <div class="container">
-      <a class="navbar-brand" href="{% url 'cultural' %}">
-        <img src="{% static 'data/images/logo.png' %}" alt="Logo" height="30">
-        CSE
-      </a>
+        <a class="navbar-brand" href="{% url 'cultural' %}">
+            <img src="{% static 'data/images/logo.png' %}" alt="Logo" height="30">
+            <span style="color: white; font-weight: bold; text-transform: uppercase;">GNDEC</span> <!-- White and capitalized -->
+        </a>
 
-      <a class="navbar-brand" href="#">GNDEC-CSE</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-  
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'cultural' %}">Cultural</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'sports' %}">Sports</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'technical' %}">Technical</a>
-          </li>
-        </ul>
-      </div>
+        <a class="navbar-brand" href="#" style="color: white; text-transform: uppercase;">GENius</a> <!-- White and capitalized -->
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'cultural' %}" style="color: white;">Cultural</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'sports' %}" style="color: white;">Sports</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'technical' %}" style="color: white;">Technical</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'my_marks' %}" style="color: white;">Academics</a>
+                </li>
+                {% if user.is_staff %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'upload_mse_marks' %}" style="color: white;">Upload MSE Marks</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
-  </nav>
+</nav>

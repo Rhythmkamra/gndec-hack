@@ -1,25 +1,87 @@
-<!-- home.html -->
-
 {% extends 'data/base.html' %}
+{% load widget_tweaks %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h1 class="text-center mb-4">Student Form</h1>
+<style>
+    .form-container {
+        margin-top: 30px; /* space below navbar */
+        padding: 40px;
+        max-width: 100%;
+    }
 
-                    <!-- Add enctype to support file uploads -->
-                    <form method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit" class="btn btn-primary btn-block mt-4">Submit</button>
-                    </form>
+    .form-card {
+        width: 80%; /* Reduced the width from 100% to 80% */
+        max-width: 600px; /* Maximum width of the form */
+        padding: 30px 50px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 255, 0.2);
 
+        margin: 0 auto; /* Center the form horizontally */
+    }
+
+    .form-title {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    form .form-group {
+        margin-bottom: 20px;
+    }
+
+    form .form-control {
+        border-radius: 8px;
+        height: 45px;
+    }
+
+    textarea.form-control {
+        height: 100px;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 18px;
+        border-radius: 8px;
+    }
+
+    .text-danger {
+        font-size: 0.875rem;
+    }
+</style>
+
+<div class="container-fluid form-container">
+    <div class="form-card">
+        <h1 class="form-title">Sports Event Form</h1>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% for field in form %}
+                <div class="form-group">
+                    {% if field|field_type == "CheckboxInput" %}
+                        <div class="form-check">
+                            {{ field|add_class:"form-check-input" }}
+                            <label class="form-check-label" for="{{ field.id_for_label }}">
+                                {{ field.label }}
+                            </label>
+                        </div>
+                    {% else %}
+                        <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                        {{ field|add_class:"form-control" }}
+                    {% endif %}
+                    {% if field.errors %}
+                        <div class="text-danger small">{{ field.errors|striptags }}</div>
+                    {% endif %}
                 </div>
+            {% endfor %}
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary submit-btn mt-3">Submit</button>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 {% endblock %}
