@@ -32,12 +32,12 @@ def upload_mse_marks(request):
                         if not student.user.first_name:
                             student.user.first_name = name
                             student.user.save()
-                        MSEMark.objects.create(
-                            student=student,
-                            subject=subject,
-                            marks=marks,
-                            exam_type=exam_type
-                        )
+                        mse_mark, created = MSEMark.objects.update_or_create(
+                        student=student,
+                        subject=subject,
+                        exam_type=exam_type,
+                        defaults={'marks': marks}
+                    )
                     except StudentProfile.DoesNotExist:
                         continue  # You could log this too
                 messages.success(request, "MSE marks uploaded successfully!")
