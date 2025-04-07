@@ -1,1 +1,1 @@
-Data management-record keeping website for cse gndec students
+gndec college hackathon 3.0
